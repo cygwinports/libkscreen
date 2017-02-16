@@ -1,0 +1,30 @@
+inherit kde4
+
+NAME="libkscreen"
+VERSION=1.0.5
+RELEASE=1
+CATEGORY="Libs"
+SUMMARY="KDE 4 screen library"
+DESCRIPTION=
+SRC_URI="mirror://kde/stable/libkscreen/${VERSION}/src/libkscreen-${VERSION}.tar.xz"
+PATCH_URI="
+	http://pkgs.fedoraproject.org/cgit/rpms/libkscreen.git/plain/libkscreen-1.0.5-VERSION_RELEASE.patch
+	http://pkgs.fedoraproject.org/cgit/rpms/libkscreen.git/plain/0004-Fix-crash-in-XRandr1.1-backend.patch
+	http://pkgs.fedoraproject.org/cgit/rpms/libkscreen.git/plain/0005-Avoid-target-name-collision.patch
+	http://pkgs.fedoraproject.org/cgit/rpms/libkscreen.git/plain/0006-Fix-quoting-problems-with-D-depending-on-required-cm.patch
+	http://pkgs.fedoraproject.org/cgit/rpms/libkscreen.git/plain/0007-Fix-building-apps-that-use-kscreen-and-which-fail-wi.patch
+"
+
+PKG_NAMES="${NAME}1 ${NAME}-devel"
+libkscreen1_CONTENTS="
+	usr/bin/cygkscreen-1.dll
+	usr/lib/kde4/plugins/kscreen/
+	usr/share/doc/${NAME}/
+"
+libkscreen_devel_REQUIRES="libQtCore4-devel libQtGui4-devel"
+libkscreen_devel_CONTENTS="
+	usr/include/kde4/kscreen/
+	usr/lib/cmake/LibKScreen/
+	usr/lib/libkscreen.dll.a
+	usr/lib/pkgconfig/kscreen.pc
+"
